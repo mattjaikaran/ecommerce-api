@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
+STRIPE_API_KEY = os.environ.get('STRIPE_TEST_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,6 +47,10 @@ INSTALLED_APPS = [
     'categories',
     'orders',
     'notifications',
+    'reviews',
+    # Third Party
+    'taggit',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +67,9 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
+    'http://localhost:3000', # Front End
+    'http://localhost:3001', # CMS
+    'https://stripe.com', # Stripe API/Webhook
 )
 
 ROOT_URLCONF = 'api.urls'
